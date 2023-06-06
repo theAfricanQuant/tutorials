@@ -151,7 +151,7 @@ def main(_):
   accuracy = tf.reduce_mean(correct_prediction)
 
   graph_location = tempfile.mkdtemp()
-  print('Saving graph to: %s' % graph_location)
+  print(f'Saving graph to: {graph_location}')
   train_writer = tf.summary.FileWriter(graph_location)
   train_writer.add_graph(tf.get_default_graph())
 
@@ -168,7 +168,7 @@ def main(_):
         print('step %d, training accuracy %g' % (i, train_accuracy))
 
         save_path = saver.save(sess, "./ckpt/model.ckpt")
-        print("Model saved in path: %s" % save_path)
+        print(f"Model saved in path: {save_path}")
       train_step.run(feed_dict={x: batch[0], y_: batch[1]})
 
     print('test accuracy %g' % accuracy.eval(feed_dict={
